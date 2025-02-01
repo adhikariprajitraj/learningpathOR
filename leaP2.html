@@ -1,6 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- ...existing head content similar to leaP1.html... -->
+<head>
+  <meta charset="UTF-8" />
+  <title>Learning Path 2 (LeaP2)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #network {
+      width: 100%;
+      height: 500px;
+      border: 1px solid lightgray;
+      margin: 20px 0;
+    }
+    #step-details {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background: #f9f9f9;
+    }
+  </style>
+</head>
 <body>
   <header>
     <h1>Learning Path 2 (LeaP2)</h1>
@@ -35,7 +54,82 @@
       { id: 3, label: 'Step 3\nReal Projects', details: 'Implementing solutions in real-world scenarios' }
     ];
     
-    // ... Rest of the script similar to leaP1.html with the same options object ...
+    const nodes = new vis.DataSet(steps.map(step => ({
+      id: step.id,
+      label: step.label,
+      title: step.details
+    })));
+    
+    const edges = new vis.DataSet([
+      { from: 1, to: 2 },
+      { from: 2, to: 3 }
+    ]);
+
+    const container = document.getElementById('network');
+    const data = { nodes: nodes, edges: edges };
+    const options = {
+      nodes: {
+        shape: 'box',
+        font: { 
+          multi: 'html',
+          size: 14
+        },
+        color: {
+          background: '#ffffff',
+          border: '#2B7CE9',
+          highlight: {
+            background: '#D2E5FF',
+            border: '#2B7CE9'
+          },
+          hover: {
+            background: '#D2E5FF',
+            border: '#2B7CE9'
+          }
+        },
+        borderWidth: 2,
+        shadow: true,
+        margin: 10
+      },
+      edges: {
+        color: '#2B7CE9',
+        width: 2,
+        smooth: {
+          type: 'continuous'
+        },
+        arrows: {
+          to: { enabled: true, scaleFactor: 0.5 }
+        }
+      },
+      physics: {
+        enabled: true,
+        solver: 'forceAtlas2Based',
+        forceAtlas2Based: {
+          gravitationalConstant: -50,
+          springLength: 200,
+          springConstant: 0.6
+        },
+        stabilization: {
+          iterations: 200
+        }
+      },
+      interaction: { 
+        hover: true,
+        zoomView: true
+      }
+    };
+    
+    const network = new vis.Network(container, data, options);
+    
+    network.on("click", function (params) {
+      if (params.nodes.length) {
+        const stepId = params.nodes[0];
+        const step = steps.find(s => s.id === stepId);
+        if(step) {
+          document.getElementById('step-details').innerHTML = 
+            '<h3>Step Details</h3>' + step.details;
+        }
+      }
+    });
   </script>
 </body>
 </html>
