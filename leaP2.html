@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ...existing head content similar to leaP1.html... -->
+<body>
+  <header>
+    <h1>Learning Path 2 (LeaP2)</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="leaP1.html">LeaP1</a></li>
+        <li><a href="leaP2.html" class="active">LeaP2</a></li>
+        <li><a href="freeP.html">FreeP</a></li>
+        <li><a href="bp.html">Business Path</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main>
+    <p>
+      <strong>Description:</strong> Advanced technical learning path<br>
+      <strong>Audience:</strong> For people with basic knowledge seeking advanced optimization skills
+    </p>
+    <div id="network"></div>
+    <div id="step-details">
+      <h3>Step Details</h3>
+      <p>Click on a step node to see details here.</p>
+    </div>
+  </main>
+  
+  <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.2/dist/vis-network.min.js"></script>
+  <script type="text/javascript">
+    const steps = [
+      { id: 1, label: 'Step 1\nAdvanced Concepts', details: 'Advanced optimization techniques and methodologies' },
+      { id: 2, label: 'Step 2\nComplex Tools', details: 'Working with sophisticated optimization tools' },
+      { id: 3, label: 'Step 3\nReal Projects', details: 'Implementing solutions in real-world scenarios' }
+    ];
+    
+    // ... Rest of the script similar to leaP1.html with the same options object ...
+  </script>
+</body>
+</html>
