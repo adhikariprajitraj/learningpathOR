@@ -68,10 +68,52 @@
     const options = {
       nodes: {
         shape: 'box',
-        font: { multi: 'html' }
+        font: { 
+          multi: 'html',
+          size: 14
+        },
+        color: {
+          background: '#ffffff',
+          border: '#2B7CE9',
+          highlight: {
+            background: '#D2E5FF',
+            border: '#2B7CE9'
+          },
+          hover: {
+            background: '#D2E5FF',
+            border: '#2B7CE9'
+          }
+        },
+        borderWidth: 2,
+        shadow: true,
+        margin: 10
       },
-      interaction: { hover: true },
-      physics: { stabilization: false }
+      edges: {
+        color: '#2B7CE9',
+        width: 2,
+        smooth: {
+          type: 'continuous'
+        },
+        arrows: {
+          to: { enabled: true, scaleFactor: 0.5 }
+        }
+      },
+      physics: {
+        enabled: true,
+        solver: 'forceAtlas2Based',
+        forceAtlas2Based: {
+          gravitationalConstant: -50,
+          springLength: 200,
+          springConstant: 0.6
+        },
+        stabilization: {
+          iterations: 200
+        }
+      },
+      interaction: { 
+        hover: true,
+        zoomView: true
+      }
     };
     const network = new vis.Network(container, data, options);
     
